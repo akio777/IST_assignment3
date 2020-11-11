@@ -1,0 +1,56 @@
+-----	Router 2   -----
+
+en
+confi te
+interfa se 0/2/1
+ip addr 192.168.0.98 255.255.255.252
+no shu
+exit
+interfa se 0/2/0
+ip addr 192.168.0.105 255.255.255.252
+no shu
+exit
+
+en
+conf te
+interf g0/1
+ip addr 192.168.0.41 255.255.255.248
+no shut
+exit
+
+en
+confi te
+router eigrp 1
+eigrp router-id 2.2.2.2
+network 192.169.0.96 0.0.0.3
+network 192.169.0.100 0.0.0.3
+network 192.169.0.104 0.0.0.3
+no auto-summary
+
+redistribute static metric 10000 0 255 1 1500
+exit
+
+
+
+ip route 192.168.0.40 255.255.255.248 g0/1
+ip route 0.0.0.0 0.0.0.0 s0/2/0
+ip route 0.0.0.0 0.0.0.0 s0/2/1
+
+### static route
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

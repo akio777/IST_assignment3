@@ -31,11 +31,25 @@ network 192.168.0.32 255.255.255.240
 defa 192.168.0.46
 end
 
+en
+confi te
+interfa se 0/3/1
+ip addr 192.168.0.97 255.255.255.252
+no shu
+exit
+interfa se 0/3/0
+ip addr 192.168.0.101 255.255.255.252
+no shu
+exit
 
-
-
-
-
+en
+confi te
+router eigrp 1
+eigrp router-id 1.1.1.1
+network 192.169.0.96
+network 192.169.0.100
+network 192.169.0.104
+no auto-summary
 
 
 
