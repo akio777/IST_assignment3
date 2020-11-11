@@ -1,0 +1,56 @@
+-----	Router 1   -----
+en
+config te
+interf g0/1.10
+encap dot1q 10
+ip addr 192.168.0.17 255.255.255.240
+no sh
+interf Gi 0/1.20
+encap dot1q 20
+ip addr 192.168.0.33 255.255.255.240
+no sh
+interf Gi 0/1
+no sh
+exit
+
+en
+confi te
+ip dhcp excl 192.168.0.17
+ip dhcp excl 192.168.0.30
+ip dhcp pool vlan10
+network 192.168.0.16 255.255.255.240
+defa 192.168.0.30
+end
+
+en
+confi te
+ip dhcp excl 192.168.0.33
+ip dhcp excl 192.168.0.46
+ip dhcp pool vlan20
+network 192.168.0.32 255.255.255.240
+defa 192.168.0.46
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
