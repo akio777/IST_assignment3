@@ -1,0 +1,36 @@
+-----	Router 3   -----
+
+en
+confi te
+interfa se 0/2/0
+ip addr 192.168.0.106 255.255.255.252
+clock rate 56000
+no shu
+exit
+interfa se 0/3/0
+ip addr 192.168.0.102 255.255.255.252
+clock rate 56000
+no shu
+exit
+
+en
+conf te
+interf se 0/2/1
+ip addr 192.168.0.109 255.255.255.252
+no shut
+exit
+
+router eigrp 1
+eigrp router-id 3.3.3.3
+network 192.168.0.104 255.255.255.252
+network 192.168.0.100 255.255.255.252
+network 192.168.0.108 255.255.255.252
+no auto-summary
+redistribute ospf 10 metric 10000 0 255 1 1500 
+exit
+
+router ospf 10 
+router-id 4.4.4.4 
+network 192.168.0.108 0.0.0.3 area 0
+redistribute eigrp 1 subnets
+redistribute static subnets

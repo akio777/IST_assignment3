@@ -1,0 +1,54 @@
+-----	Router 5   -----
+
+en
+config te
+interf g0/1.30
+encap dot1q 30
+ip addr 192.168.0.66 255.255.255.240
+no sh
+interf Gi 0/1.40
+encap dot1q 40
+ip addr 192.168.0.82 255.255.255.240
+no sh
+interf Gi 0/1
+no sh
+exit
+
+en
+confi te
+ip dhcp excl 192.168.0.65 192.168.0.66
+ip dhcp excl 192.168.0.79
+ip dhcp pool vlan30
+network 192.168.0.64 255.255.255.240
+defa 192.168.0.66
+end
+
+en
+confi te
+ip dhcp excl 192.168.0.81 192.168.0.82
+ip dhcp excl 192.168.0.95
+ip dhcp pool vlan40
+network 192.168.0.80 255.255.255.240
+defa 192.168.0.82
+end
+
+
+en
+confi te
+interfa se 0/2/0
+ip addr 192.168.0.114 255.255.255.252
+clock rate 56000
+no shu
+exit
+interfa se 0/3/0
+ip addr 192.168.0.122 255.255.255.252
+no shu
+exit
+
+
+router ospf 10
+router-id 2.2.2.2
+network 192.168.0.64 0.0.0.15 area 0
+network 192.168.0.80 0.0.0.15 area 0
+network 192.168.0.112 0.0.0.3 area 0
+network 192.168.0.120 0.0.0.3 area 0

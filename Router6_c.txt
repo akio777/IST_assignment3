@@ -1,0 +1,32 @@
+-----	Router 6   -----
+
+en
+confi te
+interfa se 0/3/1
+ip addr 192.168.0.118 255.255.255.252
+clock rate 56000
+no shu
+exit
+interfa se 0/3/0
+ip addr 192.168.0.121 255.255.255.252
+no shu
+exit
+
+interf g0/1
+ip addr 192.168.0.1 255.255.255.240
+no shut
+exit
+
+ip dhcp excl 192.168.0.1 192.168.0.2
+ip dhcp excl 192.168.0.15
+ip dhcp pool customer
+network 192.168.0.0 255.255.255.240
+defa 192.168.0.1
+end
+
+confi te
+router ospf 10
+router-id 3.3.3.3
+network 192.168.0.0 0.0.0.15 area 0
+network 192.168.0.120 0.0.0.3 area 0
+network 192.168.0.116 0.0.0.3 area 0
